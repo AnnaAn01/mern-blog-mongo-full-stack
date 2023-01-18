@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 // So that the backend allows requests from different ip addresses
 import cors from "cors";
+import authRoute from "./routes/auth.js";
 
 const app = express();
 dotenv.config();
@@ -20,7 +21,13 @@ const DB_NAME = process.env.DB_NAME;
 // Middleware - a function that adds to the basic express settings - a sort of software glue
 // Connecting cors through middleware
 // To connect a middleware we use the app that we set abode then the method use
-app.use;
+app.use(cors());
+// so that we can send json from the front-end
+app.use(express.json());
+
+// Routes (this is also like middleware)
+// initial route -  http://localhost:3002/
+app.use("/api/auth", authRoute);
 
 async function start() {
   try {
