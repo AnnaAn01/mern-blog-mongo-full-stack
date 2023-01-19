@@ -25,8 +25,14 @@ export const register = async (req, res) => {
 
     // we register this new user in the bd using mongoose
     await newUser.save();
+
+    // Sending to front-end
+    res.json({
+      newUser,
+      message: "Registration was successful",
+    });
   } catch (err) {
-    console.log(err);
+    res.json({ message: "Error while registering the user!" });
   }
 };
 // Login user
