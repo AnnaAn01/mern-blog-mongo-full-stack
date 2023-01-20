@@ -32,7 +32,7 @@ export const register = async (req, res) => {
       message: "Registration was successful",
     });
   } catch (err) {
-    res.json({ message: "Error while registering the user!" });
+    res.json({ err, message: "Error while registering the user!" });
   }
 };
 // Login user

@@ -32,6 +32,7 @@ app.use("/api/auth", authRoute);
 async function start() {
   try {
     await mongoose.connect(
+      // make sure there are no extra quotes or semicolon at the end of the string to avoid errors
       `mongodb+srv://${DB_USER}:${DB_PASSORD}@cluster0.j1fhuu9.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
     );
 
