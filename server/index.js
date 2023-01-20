@@ -32,7 +32,7 @@ app.use("/api/auth", authRoute);
 async function start() {
   try {
     await mongoose.connect(
-      `mongodb+srv://${DB_USER}:${DB_PASSORD}@cluster0.j1fhuu9.mongodb.net/${DB_NAME}?retryWrites=true&w=majority"`
+      `mongodb+srv://${DB_USER}:${DB_PASSORD}@cluster0.j1fhuu9.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`
     );
 
     app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
