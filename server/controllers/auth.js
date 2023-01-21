@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 // Register user
 export const register = async (req, res) => {
@@ -39,6 +40,7 @@ export const register = async (req, res) => {
 // Login user
 export const login = async (req, res) => {
   try {
+    // this comes from front-end, user input data
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     if (!user) {
@@ -46,6 +48,16 @@ export const login = async (req, res) => {
         message: "User doesn't exist!",
       });
     }
+
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    if (!isPasswordCorrect) {
+      return res.json({
+        message: "Incorrect password!",
+      });
+    }
+
+    // Check if we're logged in, also needed for protection, to check if we can make posts
+    const token = 
   } catch (err) {
     res.json({ err, message: "Login error!" });
   }
