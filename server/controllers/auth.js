@@ -35,11 +35,19 @@ export const register = async (req, res) => {
     res.json({ err, message: "Error while registering the user!" });
   }
 };
+
 // Login user
 export const login = async (req, res) => {
   try {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.json({
+        message: "User doesn't exist!",
+      });
+    }
   } catch (err) {
-    console.log(err);
+    res.json({ err, message: "Login error!" });
   }
 };
 // Get me
