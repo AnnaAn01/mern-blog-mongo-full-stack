@@ -57,7 +57,14 @@ export const login = async (req, res) => {
     }
 
     // Check if we're logged in, also needed for protection, to check if we can make posts
-    const token = 
+    // KWT_SECRET is defined in env file, it's a random string that we created
+    const token = jwt.sign(
+      {
+        id: user._id,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "30d" }
+    );
   } catch (err) {
     res.json({ err, message: "Login error!" });
   }
