@@ -65,6 +65,12 @@ export const login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "30d" }
     );
+    // returning the following from backend to frontend
+    res.json({
+      token,
+      user,
+      message: "Login was successful!",
+    });
   } catch (err) {
     res.json({ err, message: "Login error!" });
   }
