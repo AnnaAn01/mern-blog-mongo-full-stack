@@ -75,7 +75,7 @@ export const login = async (req, res) => {
     res.json({ err, message: "Login error!" });
   }
 };
-// Get me
+// Get me (getting the user that just logged in)
 export const getMe = async (req, res) => {
   try {
   } catch (err) {
