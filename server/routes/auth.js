@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { register, login, getMe } from "../controllers/auth.js";
+import { checkAuth } from "../utils/checkAuth.js";
 
 const router = new Router();
 
@@ -14,6 +15,6 @@ router.post("/login", login);
 // Get me (when we receive our profiles")
 // http://localhost:3002/api/auth/me
 // we're not sending anything in the profile page (getME), so we'll change post to get
-router.get("/me", getMe);
+router.get("/me", checkAuth, getMe);
 
 export default router;
