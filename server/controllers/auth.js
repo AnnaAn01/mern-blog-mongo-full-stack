@@ -76,9 +76,30 @@ export const login = async (req, res) => {
   }
 };
 // Get me (getting the user that just logged in)
+// This route will refresh? every time the page refreshes, so we need to log in if we reload the page ?
 export const getMe = async (req, res) => {
   try {
+    const user = await User.findById(req.userId);
+
+    if (!user) {
+      return res.json({
+        message: "User not found!",
+      });
+    }
+    // if everything is fine, then we create the token again
+    const token = jwt.sign(
+      {
+        id: user._id,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "30d" }
+    );
+
+    res.json({
+      user,
+      token,
+    });
   } catch (err) {
-    console.log(err);
+    res.json({ err, message: "Login error!" });
   }
 };
