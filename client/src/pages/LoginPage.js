@@ -1,5 +1,5 @@
 import React from "react";
 
 export const LoginPage = () => {
-  return <div>LoginPage</div>;
+  return <form onSubmit={(e) => e.preventDefault}>LoginPage</form>;
 };

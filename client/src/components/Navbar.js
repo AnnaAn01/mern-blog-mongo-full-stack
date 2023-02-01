@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export const Navbar = () => {
   // immitating auth
-  const isAuth = true;
+  const isAuth = false;
 
   const activeStyles = {
     color: "white",
